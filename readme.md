@@ -71,3 +71,6 @@ To train agent for centalized action multihead policies, run
 We provide a more user-friendly example to evaluate the agents via jupyter notebooks. Interested users, may also simply export the notebook to python script and run the resulting file
 
 For evaluating the centalized action policies, users may run the `evaluate_ma_ca_ppo.ipynb` and for multihead policies, they may run `evaluate_mh_ma_ca_ppo copy.ipynb`.
+
+4. **Policy Distillation using Decision Trees (VIPER)**
+To distill the policies for the pretrained agents, the users may run the `policy_distillation.ipynb` notebook
