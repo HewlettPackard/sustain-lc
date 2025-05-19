@@ -4,6 +4,8 @@
 
 # SustainLC: Benchmark for End-to-End Control of Liquid Cooling in Sustainable Data Centers
 
+## Quickstart evaluation on collab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/HewlettPackard/sustain-lc/blob/main/evaluate_mh_ma_ca_ppo.ipynb)
+
 ## 🔧 Liquid Cooling Control Benchmark for HPC Data Centers
 
 This Python-based benchmark environment enables the development and evaluation of control strategies for high-performance computing (HPC) data centers, using a digital twin of ORNL’s Frontier supercomputer. It supports energy-efficient cooling optimization across fine-grained server Blade-Groups, Cooling Towers (CT), and Heat Reuse Units (HRU).
@@ -71,6 +73,7 @@ To train agent for centalized action multihead policies, run
 We provide a more user-friendly example to evaluate the agents via jupyter notebooks. Interested users, may also simply export the notebook to python script and run the resulting file
 
 For evaluating the centalized action policies, users may run the `evaluate_ma_ca_ppo.ipynb` and for multihead policies, they may run `evaluate_mh_ma_ca_ppo copy.ipynb`.
+
 
 4. **Policy Distillation using Decision Trees (VIPER)**
 To distill the policies for the pretrained agents, the users may run the `policy_distillation.ipynb` notebook
