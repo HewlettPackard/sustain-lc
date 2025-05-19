@@ -178,7 +178,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -201,33 +201,6 @@
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation Guide for Sustain-LC</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gettingstarted.html">Getting Started</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="overview/index.html">Overview</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Overview</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="overview/environments.html">Green-DCC Environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overview/externaldata.html">External Input Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overview/algorithms.html">Benchmarking Algorithms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overview/reward_function.html">Reward Functions</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="usage/index.html">Custom Use</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Custom Use</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="usage/mainconf.html">Main Configuration File</a></li>
-<li class="toctree-l2"><a class="reference internal" href="usage/dcconf.html">Data Center Configuration File</a></li>
-<li class="toctree-l2"><a class="reference internal" href="usage/train.html">Train</a></li>
-<li class="toctree-l2"><a class="reference internal" href="usage/customworkload.html">Custom Workload Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="usage/customci.html">Custom Carbon Intensity Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="usage/customweather.html">customweather</a></li>
-<li class="toctree-l2"><a class="reference internal" href="usage/customreward.html">customreward</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="evaluation.html">Evaluation</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="code/modules.html">Modules</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Modules</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="code/train_rl_agent.html">train_rl_agent module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="code/envs.html">Environments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="code/utils.html">Utils Package</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="contribution_guidelines.html">Contribution Guidelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 </ul>
 
 </div>
@@ -262,44 +235,14 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="green-dcc-documentation">
-<h1>Green-DCC Documentation<a class="headerlink" href="#green-dcc-documentation" title="Link to this heading">¶</a></h1>
-<p>Green-DCC is a benchmark environment designed to evaluate dynamic workload distribution techniques for sustainable Data Center Clusters (DCC). It aims to reduce the environmental impact of cloud computing by distributing workloads within a DCC that spans multiple geographical locations. The benchmark environment supports the evaluation of various control algorithms, including reinforcement learning-based approaches.</p>
-<p>This page contains the documentation for the GitHub <a class="reference external" href="https://github.com/HewlettPackard/green-dcc">repository</a> and the paper
-“Green-DCC: Benchmarking Dynamic Workload Distribution Techniques for Sustainable Data Center Cluster”
-&lt;<a class="reference external" href="https://openreview.net/forum?id=DoDz1IXjDB">https://openreview.net/forum?id=DoDz1IXjDB</a>&gt;_</p>
-<a class="reference internal image-reference" href="_images/hier.png"><img alt="Green-DCC Framework for Data Center Cluster Management" class="align-center" src="_images/hier.png" style="width: 776.88px; height: 389.88px;" />
-</a>
-<section id="demo-of-green-dcc">
-<h2>Demo of Green-DCC<a class="headerlink" href="#demo-of-green-dcc" title="Link to this heading">¶</a></h2>
-<p>A demo of Green-DCC is given in the Google Colab notebook below:</p>
-<a class="reference external image-reference" href="https://colab.research.google.com/drive/1NdU2-FMWxEXN2dPM1T9MSVww5jpnFExP?usp=sharing"><img alt="Google Colab" src="_images/colab-badge.png" />
-</a>
-</section>
-<section id="key-features-of-green-dcc">
-<h2>Key features of Green-DCC<a class="headerlink" href="#key-features-of-green-dcc" title="Link to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>Dynamic geographic distribution of workloads across data centers in a cluster, driven by a central Top-Level Agent.</p></li>
-<li><p>Dynamic temporal scheduling decisions by the Top-Level Agent, determining whether tasks should be executed immediately or deferred to optimize efficiency.</p></li>
-<li><p>Incorporation of non-uniform computing resources, cooling capabilities, auxiliary power resources, and varying external weather and carbon intensity conditions.</p></li>
-<li><p>A dynamic bandwidth cost model that accounts for the geographical characteristics and amount of data transferred.</p></li>
-<li><p>Realistic workload execution delays to reflect changes in data center capacity and demand.</p></li>
-<li><p>Support for benchmarking multiple heuristic and reinforcement learning-based approaches.</p></li>
-<li><p>Customizability to address specific needs of cloud providers or enterprise data center clusters.</p></li>
-</ul>
-<p>Green-DCC provides a complex, interdependent, and realistic benchmarking environment that is well-suited for evaluating reinforcement learning algorithms applied to data center control. The ultimate goal is to optimize workload distribution to minimize the carbon footprint, energy usage, and energy cost, while considering various operational constraints and environmental factors.</p>
-<a class="reference internal image-reference" href="_images/GreenDCCv3.png"><img alt="Green-DCC Framework demonstrating Geographic and Temporal Scheduling Strategies" class="align-center" src="_images/GreenDCCv3.png" style="width: 834.75px; height: 298.5px;" />
-</a>
-</section>
-<section id="scheduling-strategy">
-<h2>Scheduling Strategy<a class="headerlink" href="#scheduling-strategy" title="Link to this heading">¶</a></h2>
-<p>Green-DCC centralizes both geographic and temporal workload distribution decisions in the Top-Level Agent. At each scheduling step, the agent determines whether to execute a given task immediately or defer it, and selects the optimal data center for execution. This unified spatio-temporal approach ensures that all load-shifting logic is handled globally.</p>
+          <section id="sustain-lc-documentation">
+<h1>Sustain-LC Documentation<a class="headerlink" href="#sustain-lc-documentation" title="Link to this heading">¶</a></h1>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
@@ -313,50 +256,8 @@
 <li class="toctree-l2"><a class="reference internal" href="installation.html#build-the-documentation">Build the documentation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="gettingstarted.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="overview/index.html">Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="overview/index.html#data-center-cluster-model">Data Center Cluster Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overview/index.html#scheduling-strategies">Scheduling Strategies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overview/index.html#data-center-model">Data Center Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overview/index.html#input-data-sources">Input Data Sources</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="usage/index.html">Custom Use</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="usage/mainconf.html">Main Configuration File</a></li>
-<li class="toctree-l2"><a class="reference internal" href="usage/dcconf.html">Data Center Configuration File</a></li>
-<li class="toctree-l2"><a class="reference internal" href="usage/train.html">Train</a></li>
-<li class="toctree-l2"><a class="reference internal" href="usage/customworkload.html">Custom Workload Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="usage/customci.html">Custom Carbon Intensity Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="usage/customweather.html">customweather</a></li>
-<li class="toctree-l2"><a class="reference internal" href="usage/customreward.html">customreward</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="evaluation.html">Evaluation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="evaluation.html#evaluation-metrics">Evaluation Metrics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evaluation.html#tensorboard-visualization">TensorBoard visualization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evaluation.html#custom-metrics">Custom Metrics</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="code/modules.html">Modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="code/train_rl_agent.html">train_rl_agent module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="code/envs.html">Environments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="code/utils.html">Utils Package</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="contribution_guidelines.html">Contribution Guidelines</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="contribution_guidelines.html#how-to-contribute">How to Contribute</a></li>
-<li class="toctree-l2"><a class="reference internal" href="contribution_guidelines.html#code-of-conduct">Code of Conduct</a></li>
-<li class="toctree-l2"><a class="reference internal" href="contribution_guidelines.html#reporting-issues">Reporting Issues</a></li>
-<li class="toctree-l2"><a class="reference internal" href="contribution_guidelines.html#development-guidelines">Development Guidelines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="contribution_guidelines.html#testing">Testing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="contribution_guidelines.html#contact">Contact</a></li>
-<li class="toctree-l2"><a class="reference internal" href="contribution_guidelines.html#license">License</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 </ul>
 </div>
-</section>
 </section>
 
         </article>
@@ -392,29 +293,8 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer">
+    <aside class="toc-drawer no-toc">
       
-      
-      <div class="toc-sticky toc-scroll">
-        <div class="toc-title-container">
-          <span class="toc-title">
-            On this page
-          </span>
-        </div>
-        <div class="toc-tree-container">
-          <div class="toc-tree">
-            <ul>
-<li><a class="reference internal" href="#">Green-DCC Documentation</a><ul>
-<li><a class="reference internal" href="#demo-of-green-dcc">Demo of Green-DCC</a></li>
-<li><a class="reference internal" href="#key-features-of-green-dcc">Key features of Green-DCC</a></li>
-<li><a class="reference internal" href="#scheduling-strategy">Scheduling Strategy</a></li>
-</ul>
-</li>
-</ul>
-
-          </div>
-        </div>
-      </div>
       
       
     </aside>
@@ -423,6 +303,5 @@
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/furo.js?v=5fa4622c"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </body>
 </html>
