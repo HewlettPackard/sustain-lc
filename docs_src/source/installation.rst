@@ -1,5 +1,5 @@
 Installation Guide for Sustain-LC
-================================
+=================================
 
 This document shows you how to get Sustain-LC up and running.
 
