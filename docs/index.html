@@ -241,38 +241,49 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="sustain-cluster-documentation">
-<h1>Sustain-Cluster Documentation<a class="headerlink" href="#sustain-cluster-documentation" title="Link to this heading">¶</a></h1>
-<p>Sustain-Cluster is a benchmark environment designed to evaluate dynamic workload distribution techniques for sustainable Data Center Clusters (DCC). It aims to reduce the environmental impact of cloud computing by distributing workloads within a DCC that spans multiple geographical locations. The benchmark environment supports the evaluation of various control algorithms, including reinforcement learning-based approaches.</p>
-<p>This page contains the documentation for the GitHub <a class="reference external" href="https://github.com/HewlettPackard/sustain-cluster">repository</a> and the paper
-“SustainCluster: Benchmarking Dynamic Workload Distribution Techniques for Sustainable Data Center Cluster”
-&lt;<a class="reference external" href="https://openreview.net/forum?id=AgTASkryb6">https://openreview.net/forum?id=AgTASkryb6</a>&gt;_</p>
-<a class="reference internal image-reference" href="_images/global_map3.png"><img alt="Sustain-Cluster Framework for Data Center Cluster Management" class="align-center" src="_images/global_map3.png" style="width: 950.4000000000001px; height: 388.85px;" />
-</a>
-<section id="demo-of-sustain-cluster">
-<h2>Demo of Sustain-Cluster<a class="headerlink" href="#demo-of-sustain-cluster" title="Link to this heading">¶</a></h2>
-<p>A demo of Sustain-Cluster is given in the Google Colab notebook below:</p>
-<a class="reference external image-reference" href="https://colab.research.google.com/drive/1NdU2-FMWxEXN2dPM1T9MSVww5jpnFExP?usp=sharing"><img alt="Google Colab" src="_images/colab-badge.png" />
-</a>
-</section>
-<section id="key-features-of-sustain-cluster">
-<h2>Key features of Sustain-Cluster<a class="headerlink" href="#key-features-of-sustain-cluster" title="Link to this heading">¶</a></h2>
+          <section id="sustain-lc-documentation">
+<h1>Sustain-LC Documentation<a class="headerlink" href="#sustain-lc-documentation" title="Link to this heading">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
+<p>Sustain-LC is a Gymnasium-compatible framework for simulating, modeling, and controlling liquid-cooled data center cooling systems using both rule-based and reinforcement-learning-based methods. This documentation covers:</p>
 <ul class="simple">
-<li><p>Dynamic geographic distribution of workloads across data centers in a cluster, driven by a central Top-Level Agent.</p></li>
-<li><p>Dynamic temporal scheduling decisions by the Top-Level Agent, determining whether tasks should be executed immediately or deferred to optimize efficiency.</p></li>
-<li><p>Incorporation of non-uniform computing resources, cooling capabilities, auxiliary power resources, and varying external weather and carbon intensity conditions.</p></li>
-<li><p>A dynamic bandwidth cost model that accounts for the geographical characteristics and amount of data transferred.</p></li>
-<li><p>Realistic workload execution delays to reflect changes in data center capacity and demand.</p></li>
-<li><p>Support for benchmarking multiple heuristic and reinforcement learning-based approaches.</p></li>
-<li><p>Customizability to address specific needs of cloud providers or enterprise data center clusters.</p></li>
+<li><p>Installation instructions for setting up Sustain-LC.</p></li>
+<li><p>An overview of the liquid cooling architecture.</p></li>
+<li><p>Details of the JSON-to-Modelica modeling pipeline.</p></li>
+<li><p>The design of the Cooling Tower and Blade Group MDPs for RL-based control.</p></li>
 </ul>
-<p>Sustain-Cluster provides a complex, interdependent, and realistic benchmarking environment that is well-suited for evaluating reinforcement learning algorithms applied to data center control. The ultimate goal is to optimize workload distribution to minimize the carbon footprint, energy usage, and energy cost, while considering various operational constraints and environmental factors.</p>
-<a class="reference internal image-reference" href="_images/GreenDCCv3.png"><img alt="Sustain-Cluster Framework demonstrating Geographic and Temporal Scheduling Strategies" class="align-center" src="_images/GreenDCCv3.png" style="width: 834.75px; height: 298.5px;" />
-</a>
 </section>
-<section id="scheduling-strategy">
-<h2>Scheduling Strategy<a class="headerlink" href="#scheduling-strategy" title="Link to this heading">¶</a></h2>
-<p>Sustain-Cluster centralizes both geographic and temporal workload distribution decisions in the Top-Level Agent. At each scheduling step, the agent determines whether to execute a given task immediately or defer it, and selects the optimal data center for execution. This unified spatio-temporal approach ensures that all load-shifting logic is handled globally.</p>
+<section id="sustainlc-description">
+<h2>SustainLC Description<a class="headerlink" href="#sustainlc-description" title="Link to this heading">¶</a></h2>
+<p>First, we provide a high-level description of the Frontier Liquid Cooling system and how it has been augmented with blade-level cooling, coolant setpoint and flow-rate control, and Cooling Tower water setpoint control. This enables machine-learning–based temperature and power management. We then describe the modeling pipeline and control problems implemented in Sustain-LC.</p>
+</section>
+<section id="frontier-liquid-cooling-system-for-machine-learning-applications">
+<h2>Frontier Liquid Cooling System for Machine Learning Applications<a class="headerlink" href="#frontier-liquid-cooling-system-for-machine-learning-applications" title="Link to this heading">¶</a></h2>
+<p>Below is the high-level architecture of the Frontier LC system. Server cabinets are grouped into blades, each cooled by a CDU–Rack Loop that extracts heat via a heat exchanger (HX) and pumps by adjusting coolant temperature and flow rate. Heat from 25 such CDU–Rack pairs is collected by a central Hot Water System (HTW) and rejected via the Cooling Tower (CT) Loop, which uses fans for forced-draft cooling through sensible and latent processes. CT power consumption depends on wet-bulb temperature, supply-water setpoint, and incoming thermal load. An intermediate Heat Recovery Unit (HRU) captures waste heat for ancillary heating applications.</p>
+<figure class="align-center" id="id1">
+<img alt="System Overview of end-to-end Control of Liquid Cooled Data Center" src="_images/lc-high-level.png" />
+<figcaption>
+<p><span class="caption-text">System Overview of end-to-end Control of Liquid Cooled Data Center. The CDU RL agents control the HPC server cabinets. The Cooling Towers are controlled by the CT RL agents.</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="sustainlc-modeling">
+<h2>SustainLC Modeling<a class="headerlink" href="#sustainlc-modeling" title="Link to this heading">¶</a></h2>
+<p>The modeling workflow consists of three main steps:</p>
+<ol class="arabic simple">
+<li><p><strong>Hierarchical JSON specification:</strong> Define the LC system components (cabinets, CDUs, heat exchangers, pumps, valves, sensors, Cooling Tower) and control modes in a JSON file.</p></li>
+<li><p><strong>AutoCSM API conversion:</strong> Ingest the JSON via the AutoCSM API to automatically generate a Modelica model using the datacenterCoolingModel library.</p></li>
+<li><p><strong>FMU export and Python interface:</strong> Export the Modelica model as a Functional Mockup Unit (FMU) and provide Python bindings (Gymnasium, FMPy, PyFMI) for RL environment integration.</p></li>
+</ol>
+</section>
+<section id="sustainlc-control">
+<h2>SustainLC Control<a class="headerlink" href="#sustainlc-control" title="Link to this heading">¶</a></h2>
+<p>Sustain-LC defines two RL problems on the same FMU transition model:</p>
+<ol class="arabic simple">
+<li><p><strong>Cooling Tower MDP:</strong> A supervisory agent adjusts CT water setpoints to minimize overall data-center cooling energy consumption.</p></li>
+<li><p><strong>Blade Group MDP:</strong> Local agents regulate coolant temperature setpoints and flow rates at each blade branch to maintain target server inlet temperatures.</p></li>
+</ol>
+<p>These agents operate independently with centralized inference during rollout to handle the large scale (∼10⁴ blade groups) and weak thermal coupling.</p>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
@@ -336,10 +347,12 @@
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Sustain-Cluster Documentation</a><ul>
-<li><a class="reference internal" href="#demo-of-sustain-cluster">Demo of Sustain-Cluster</a></li>
-<li><a class="reference internal" href="#key-features-of-sustain-cluster">Key features of Sustain-Cluster</a></li>
-<li><a class="reference internal" href="#scheduling-strategy">Scheduling Strategy</a></li>
+<li><a class="reference internal" href="#">Sustain-LC Documentation</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#sustainlc-description">SustainLC Description</a></li>
+<li><a class="reference internal" href="#frontier-liquid-cooling-system-for-machine-learning-applications">Frontier Liquid Cooling System for Machine Learning Applications</a></li>
+<li><a class="reference internal" href="#sustainlc-modeling">SustainLC Modeling</a></li>
+<li><a class="reference internal" href="#sustainlc-control">SustainLC Control</a></li>
 </ul>
 </li>
 </ul>
