@@ -201,6 +201,13 @@
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation Guide for Sustain-LC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guide for Sustain-LC</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="tutorials/index.html">Tutorials</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Tutorials</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/advanced_autocsm_usage.html">Advanced AutoCSM Usage for Model Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/blade_group_modeling.html">Blade Group and CDU Modeling</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="environment.html">Environment Implementation</a></li>
 </ul>
 
 </div>
@@ -255,15 +262,17 @@
 </section>
 <section id="sustainlc-description">
 <h2>SustainLC Description<a class="headerlink" href="#sustainlc-description" title="Link to this heading">¶</a></h2>
-<p>First, we provide a high-level description of the Frontier Liquid Cooling system and how it has been augmented with blade-level cooling, coolant setpoint and flow-rate control, and Cooling Tower water setpoint control. This enables machine-learning–based temperature and power management. We then describe the modeling pipeline and control problems implemented in Sustain-LC.</p>
+<p>First, we provide a high-level description of the Frontier Liquid Cooling system and how it has been augmented with blade-level cooling, coolant setpoint and flow-rate control, and Cooling Tower water setpoint control. This enables machine-learning–based temperature and power management. We then describe the modeling workflow and the RL control formulations implemented in Sustain-LC.</p>
 </section>
 <section id="frontier-liquid-cooling-system-for-machine-learning-applications">
 <h2>Frontier Liquid Cooling System for Machine Learning Applications<a class="headerlink" href="#frontier-liquid-cooling-system-for-machine-learning-applications" title="Link to this heading">¶</a></h2>
-<p>Below is the high-level architecture of the Frontier LC system. Server cabinets are grouped into blades, each cooled by a CDU–Rack Loop that extracts heat via a heat exchanger (HX) and pumps by adjusting coolant temperature and flow rate. Heat from 25 such CDU–Rack pairs is collected by a central Hot Water System (HTW) and rejected via the Cooling Tower (CT) Loop, which uses fans for forced-draft cooling through sensible and latent processes. CT power consumption depends on wet-bulb temperature, supply-water setpoint, and incoming thermal load. An intermediate Heat Recovery Unit (HRU) captures waste heat for ancillary heating applications.</p>
+<p>Below is the high-level architecture of the Frontier LC system. Server cabinets are grouped into blades, each cooled by a CDU–Rack Loop that extracts heat via a heat exchanger and pumps by adjusting coolant temperature and flow rate. Heat from 25 such CDU–Rack pairs is collected by a central Hot Water System (HTW) and rejected via the Cooling Tower (CT) Loop, which uses fans for forced-draft cooling through sensible and latent processes. CT power consumption depends on wet-bulb temperature, supply-water setpoint, and incoming thermal load. An intermediate Heat Recovery Unit (HRU) captures waste heat for ancillary heating applications.</p>
 <figure class="align-center" id="id1">
 <img alt="System Overview of end-to-end Control of Liquid Cooled Data Center" src="_images/lc-high-level.png" />
 <figcaption>
-<p><span class="caption-text">System Overview of end-to-end Control of Liquid Cooled Data Center. The CDU RL agents control the HPC server cabinets. The Cooling Towers are controlled by the CT RL agents.</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+<p><span class="caption-text">System Overview of end-to-end Control of Liquid Cooled Data Center.
+The CDU RL agents control the HPC server cabinets.
+The Cooling Towers are controlled by the CT RL agents.</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
@@ -271,7 +280,7 @@
 <h2>SustainLC Modeling<a class="headerlink" href="#sustainlc-modeling" title="Link to this heading">¶</a></h2>
 <p>The modeling workflow consists of three main steps:</p>
 <ol class="arabic simple">
-<li><p><strong>Hierarchical JSON specification:</strong> Define the LC system components (cabinets, CDUs, heat exchangers, pumps, valves, sensors, Cooling Tower) and control modes in a JSON file.</p></li>
+<li><p><strong>Hierarchical JSON specification:</strong> Define the LC system components (cabinets, CDUs, heat exchangers, pumps, valves, sensors, cooling tower) and control modes in a JSON file.</p></li>
 <li><p><strong>AutoCSM API conversion:</strong> Ingest the JSON via the AutoCSM API to automatically generate a Modelica model using the datacenterCoolingModel library.</p></li>
 <li><p><strong>FMU export and Python interface:</strong> Export the Modelica model as a Functional Mockup Unit (FMU) and provide Python bindings (Gymnasium, FMPy, PyFMI) for RL environment integration.</p></li>
 </ol>
@@ -283,7 +292,7 @@
 <li><p><strong>Cooling Tower MDP:</strong> A supervisory agent adjusts CT water setpoints to minimize overall data-center cooling energy consumption.</p></li>
 <li><p><strong>Blade Group MDP:</strong> Local agents regulate coolant temperature setpoints and flow rates at each blade branch to maintain target server inlet temperatures.</p></li>
 </ol>
-<p>These agents operate independently with centralized inference during rollout to handle the large scale (∼10⁴ blade groups) and weak thermal coupling.</p>
+<p>Both problems share the same FMU transition function (𝒯), enabling mutual influence. However, due to weak thermal coupling and the large scale (∼10⁴ blade groups), centralized training with decentralized execution proved ineffective. Instead, agents operate independently with centralized inference during rollout.</p>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
@@ -295,6 +304,20 @@
 <li class="toctree-l2"><a class="reference internal" href="installation.html#install-pyfmi">Install PyFMI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#optional-install-sphinx-for-docs">(Optional) Install Sphinx for docs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#build-the-documentation">Build the documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guide for Sustain-LC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/advanced_autocsm_usage.html">Advanced AutoCSM Usage for Model Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/blade_group_modeling.html">Blade Group and CDU Modeling</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="environment.html">Environment Implementation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="environment.html#fmu-integration-and-simulation-core">FMU Integration and Simulation Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment.html#state-observation-space">State (Observation) Space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment.html#action-space">Action Space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment.html#reward-function">Reward Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment.html#episode-dynamics-and-simulation-control">Episode Dynamics and Simulation Control</a></li>
 </ul>
 </li>
 </ul>
@@ -368,5 +391,6 @@
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/furo.js?v=5fa4622c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </body>
 </html>

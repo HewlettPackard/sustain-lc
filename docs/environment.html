@@ -2,10 +2,12 @@
 <html class="no-js" lang="en" data-content_root="./">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="#" /><link rel="search" title="Search" href="search.html" />
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="Blade Group and CDU Modeling" href="tutorials/blade_group_modeling.html" />
 
-    <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 --><title>Index - sustain-lc documentation</title>
-<link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
+        <title>Environment Implementation - sustain-lc documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=302659d7" />
     
@@ -176,7 +178,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -197,7 +199,7 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation Guide for Sustain-LC</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guide for Sustain-LC</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="tutorials/index.html">Tutorials</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Tutorials</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -205,7 +207,7 @@
 <li class="toctree-l2"><a class="reference internal" href="tutorials/blade_group_modeling.html">Blade Group and CDU Modeling</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="environment.html">Environment Implementation</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Environment Implementation</a></li>
 </ul>
 
 </div>
@@ -225,7 +227,13 @@
           <span>Back to top</span>
         </a>
         <div class="content-icon-container">
-          <div class="theme-toggle-container theme-toggle-content">
+          <div class="view-this-page">
+  <a class="muted-link" href="_sources/environment.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
@@ -234,16 +242,87 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          
-<section class="genindex-section">
-  <h1 id="index">Index</h1>
-  <div class="genindex-jumpbox"></div>
+          <section id="environment-implementation">
+<h1>Environment Implementation<a class="headerlink" href="#environment-implementation" title="Link to this heading">¶</a></h1>
+<p>The environment interfaces with a high-fidelity Modelica model compiled as a Functional Mock-up Unit (FMU) version 2.0 for Co-Simulation, leveraging the <code class="docutils literal notranslate"><span class="pre">PyFMI</span></code> library for interaction.</p>
+<section id="fmu-integration-and-simulation-core">
+<h2>FMU Integration and Simulation Core<a class="headerlink" href="#fmu-integration-and-simulation-core" title="Link to this heading">¶</a></h2>
+<p>The core of the simulation is a Modelica model representing the data center’s liquid cooling thermodynamics. This model is compiled into an FMU, for example <code class="docutils literal notranslate"><span class="pre">LC_Frontier_5Cabinet_4_17_25.fmu</span></code>. The environment utilizes <code class="docutils literal notranslate"><span class="pre">PyFMI</span></code> to:</p>
+<ol class="arabic simple">
+<li><p>Load the FMU and parse its model description.</p></li>
+<li><p>Instantiate the FMU for simulation.</p></li>
+<li><p>Set up the experiment parameters, including start time (0.0) and a tolerance (if specified, default is FMU’s choice).</p></li>
+<li><p>Initialize the FMU into its starting state.</p></li>
+<li><p>During an episode step:
+- Set input values (actions from the RL agent) to specified FMU variables.
+- Advance the simulation time by <code class="docutils literal notranslate"><span class="pre">sim_time_step</span></code> using the <code class="docutils literal notranslate"><span class="pre">fmu.do_step()</span></code> method. This is repeated until the agent’s <code class="docutils literal notranslate"><span class="pre">step_size</span></code> is covered.
+- Get output values (observations for the RL agent and values for reward calculation) from specified FMU variables.</p></li>
+<li><p>Terminate and free the FMU instance upon closing the environment or resetting for a new episode.</p></li>
+</ol>
+<p>The FMU variable names used for interfacing are explicitly defined within the environment:</p>
+<ul class="simple">
+<li><p><strong>Action Variables:</strong> <code class="docutils literal notranslate"><span class="pre">self.fmu_action_vars</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">pump1.speed_in</span></code>, <code class="docutils literal notranslate"><span class="pre">valve1.position_in</span></code>)</p></li>
+<li><p><strong>Observation Variables:</strong> <code class="docutils literal notranslate"><span class="pre">self.fmu_observation_vars</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">serverRack1.T_out</span></code>, ambient.T)</p></li>
+<li><p><strong>Power Consumption Variables (for reward):</strong> <code class="docutils literal notranslate"><span class="pre">self.fmu_power_vars</span></code> (e.g., [pump1.P, fan1.P])</p></li>
+<li><p><strong>Target Temperature Variable (for reward):</strong> <code class="docutils literal notranslate"><span class="pre">self.fmu_target_temp_var</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">controller.T_setpoint</span></code>)</p></li>
+</ul>
+</section>
+<section id="state-observation-space">
+<h2>State (Observation) Space<a class="headerlink" href="#state-observation-space" title="Link to this heading">¶</a></h2>
+<p>The observation space is defined as a continuous <code class="docutils literal notranslate"><span class="pre">gymnasium.spaces.Box</span></code> with specific lower and upper bounds. It comprises the following variables retrieved from the FMU:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FrontierNode.AvgBladeGroupTemp</span></code>: Average temperature of a Blade Group in a cabinet (K).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FrontierNode.AvgBladeGroupPower</span></code>: Average power input to each Blade Group in a cabinet (W).</p></li>
+</ul>
+<p>The bounds for these observations are set to, for example, 273.15 K and 373.15 K for temperature measurements, and between 0.0 kW and 400 kW for power input measurements.</p>
+<p>For the Cooling Tower Markov Decision Process, we have a similar observation space:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FrontierNode.CoolingTower.CellPower</span></code>: Average power consumption of each cell of the cooling tower (W).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FrontierNode.CoolingTower.WaterLeavingTemp</span></code>: Average temperature of the water leaving each cooling tower (K).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_owb</span></code>: Outside air wet-bulb temperature.</p></li>
+</ul>
+</section>
+<section id="action-space">
+<h2>Action Space<a class="headerlink" href="#action-space" title="Link to this heading">¶</a></h2>
+<p>The action space is a hybrid of continuous <code class="docutils literal notranslate"><span class="pre">gymnasium.spaces.Box</span></code> and discrete <code class="docutils literal notranslate"><span class="pre">gymnasium.spaces.Discrete</span></code>, allowing the agent to control:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FrontierNode.CDU.Pump.normalized_speed</span></code>: Scaled speed of the CDU pump (–1 to 1).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FrontierNode.CDU.TempSetpoint</span></code>: Scaled coolant supply temperature setpoint (–1 to 1).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FrontierNode.CDU.AvgBladeGroupValve</span></code>: Scaled valve opening to allow coolant to collect heat from the corresponding blade group (–1 to 1).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FrontierNode.CoolingTower.WaterLvTSPT</span></code>: Discrete setting of cooling tower water leaving temperature setpoint delta.</p></li>
+</ul>
+<p>These scaled values allow the neural network models used for the RL agents to learn properly and not saturate at the activation layers.</p>
+</section>
+<section id="reward-function">
+<h2>Reward Function<a class="headerlink" href="#reward-function" title="Link to this heading">¶</a></h2>
+<p>The reward function guides the RL agent towards desired operational states. It is calculated at each step as:</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[R_{\text{blade}} = - \sum_{i,j} T_{i,j}\]</div>
+</div>
+<p>which is the negative of the aggregate temperature of the blade groups, and</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[R_{\text{cooling tower}} = - \sum_{i,j} P_{i,j}\]</div>
+</div>
+<p>which is the negative of the total cooling tower power consumption at each time step.</p>
+<p>Where:</p>
+<ul class="simple">
+<li><p>(T_{i,j}) is the temperature of the (j)th blade group of the (i)th cabinet, (forall j in 1 ldots B) and (forall i in 1 ldots C).</p></li>
+<li><p>(P_{i,j}) is the power consumption of the (j)th cell of the (i)th cooling tower, (forall j in 1 ldots m) and (forall i in 1 ldots N).</p></li>
+</ul>
+<p>The goal is to minimize server temperatures below the target and minimize energy consumption.</p>
+</section>
+<section id="episode-dynamics-and-simulation-control">
+<h2>Episode Dynamics and Simulation Control<a class="headerlink" href="#episode-dynamics-and-simulation-control" title="Link to this heading">¶</a></h2>
+<p>An episode runs for a maximum of <code class="docutils literal notranslate"><span class="pre">max_episode_duration</span></code>. The agent interacts with the environment at discrete time intervals defined by <code class="docutils literal notranslate"><span class="pre">step_size</span></code>. For each agent step, the FMU’s <code class="docutils literal notranslate"><span class="pre">do_step()</span></code> method is called <code class="docutils literal notranslate"><span class="pre">step_size</span> <span class="pre">/</span> <span class="pre">sim_time_step</span></code> times. The <code class="docutils literal notranslate"><span class="pre">reset()</span></code> method terminates the current FMU instance, re-instantiates and re-initializes it, ensuring a consistent starting state for each new episode. Initial observations are drawn from the FMU after initialization.</p>
+</section>
 </section>
 
         </article>
@@ -252,7 +331,17 @@
         
         <div class="related-pages">
           
-          
+          <a class="prev-page" href="tutorials/blade_group_modeling.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Blade Group and CDU Modeling</div>
+                
+              </div>
+            </a>
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
@@ -271,8 +360,31 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Environment Implementation</a><ul>
+<li><a class="reference internal" href="#fmu-integration-and-simulation-core">FMU Integration and Simulation Core</a></li>
+<li><a class="reference internal" href="#state-observation-space">State (Observation) Space</a></li>
+<li><a class="reference internal" href="#action-space">Action Space</a></li>
+<li><a class="reference internal" href="#reward-function">Reward Function</a></li>
+<li><a class="reference internal" href="#episode-dynamics-and-simulation-control">Episode Dynamics and Simulation Control</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
@@ -281,5 +393,6 @@
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/furo.js?v=5fa4622c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </body>
 </html>
