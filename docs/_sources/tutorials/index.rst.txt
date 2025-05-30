@@ -7,4 +7,3 @@ The following tutorials cover key workflows in Sustain-LC:
    :maxdepth: 2
 
    advanced_autocsm_usage
-   blade_group_modeling

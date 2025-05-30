@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Environment Implementation" href="../environment.html" /><link rel="prev" title="Advanced AutoCSM Usage for Model Building" href="advanced_autocsm_usage.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Blade Group and CDU Modeling" href="blade_group_modeling.html" /><link rel="prev" title="Modeling" href="index.html" />
 
     <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
-        <title>Blade Group and CDU Modeling - sustain-lc documentation</title>
+        <title>Cooling Tower Modeling - sustain-lc documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
@@ -202,9 +202,13 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation Guide for Sustain-LC</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart Guide for Sustain-LC</a></li>
-<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">Tutorials</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Tutorials</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="advanced_autocsm_usage.html">Advanced AutoCSM Usage for Model Building</a></li>
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Blade Group and CDU Modeling</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Tutorials</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/advanced_autocsm_usage.html">Advanced AutoCSM Usage for Model Building</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">Modeling</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Modeling</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Cooling Tower Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blade_group_modeling.html">Blade Group and CDU Modeling</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../environment.html">Environment Implementation</a></li>
@@ -228,7 +232,7 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="../_sources/tutorials/blade_group_modeling.rst.txt" title="View this page">
+  <a class="muted-link" href="../_sources/modeling/cooling_tower.rst.txt" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
@@ -248,38 +252,85 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="blade-group-and-cdu-modeling">
-<h1>Blade Group and CDU Modeling<a class="headerlink" href="#blade-group-and-cdu-modeling" title="Link to this heading">¶</a></h1>
-<p>The thermodynamics of each blade-group (BG) with liquid-cooled plates is governed by:</p>
-<section id="heat-capacitor">
-<h2>Heat capacitor<a class="headerlink" href="#heat-capacitor" title="Link to this heading">¶</a></h2>
+          <section id="cooling-tower-modeling">
+<h1>Cooling Tower Modeling<a class="headerlink" href="#cooling-tower-modeling" title="Link to this heading">¶</a></h1>
+<p>The cooling tower model simulates the removal of heat from the condenser water loop to ambient air by evaporative cooling, and is governed by the following key relationships.</p>
+<section id="mass-continuity">
+<h2>Mass continuity<a class="headerlink" href="#mass-continuity" title="Link to this heading">¶</a></h2>
+<p>Assuming no bleed or blow-down, the water mass flow through the tower is conserved:</p>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
-\[C \,\frac{dT}{dt} \;=\; Q_{\mathrm{port}}(t)\]</div>
-</div>
-<p>where <span class="math notranslate nohighlight">\(T\)</span> is the BG temperature and <span class="math notranslate nohighlight">\(Q_{\mathrm{port}}\)</span> is the net heat flow, here equal to the server’s load:</p>
-<div class="math-wrapper docutils container">
-<div class="math notranslate nohighlight">
-\[Q_{\mathrm{port}} = P_{\mathrm{branch}}\]</div>
+\[\dot{m}_{w,\mathrm{in}} = \dot{m}_{w,\mathrm{out}}
+= \dot{m}_w\]</div>
 </div>
 </section>
-<section id="conduction-model">
-<h2>Conduction model<a class="headerlink" href="#conduction-model" title="Link to this heading">¶</a></h2>
+<section id="energy-balance">
+<h2>Energy balance<a class="headerlink" href="#energy-balance" title="Link to this heading">¶</a></h2>
+<p>The sensible heat removed from the water equals the tower heat duty:</p>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
-\[Q_{\mathrm{flow}} \;=\; G_{c}\,(T_{\mathrm{solid}} - T_{\mathrm{fluid}})\]</div>
+\[\dot{m}_w\,c_{p,w}\,(T_{w,\mathrm{in}} - T_{w,\mathrm{out}})
+= Q_{\mathrm{tower}}\]</div>
 </div>
-<p>with <span class="math notranslate nohighlight">\(G_{c}\)</span> the convective conductance (function of coolant properties and flow rate <span class="math notranslate nohighlight">\(m_{\mathrm{flow}}\)</span>).</p>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\dot{m}_w\)</span> is the water mass flow rate</p></li>
+<li><p><span class="math notranslate nohighlight">\(c_{p,w}\)</span> is the specific heat capacity of water</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_{w,\mathrm{in}}\)</span> and <span class="math notranslate nohighlight">\(T_{w,\mathrm{out}}\)</span> are the inlet and outlet water temperatures</p></li>
+</ul>
 </section>
-<section id="overall-balance">
-<h2>Overall balance<a class="headerlink" href="#overall-balance" title="Link to this heading">¶</a></h2>
+<section id="overall-heattransfer-model">
+<h2>Overall heat‐transfer model<a class="headerlink" href="#overall-heattransfer-model" title="Link to this heading">¶</a></h2>
+<p>Model the tower as a counter-flow heat exchanger with overall conductance <span class="math notranslate nohighlight">\(UA\)</span> and log-mean temperature difference <span class="math notranslate nohighlight">\(\Delta T_{\mathrm{lm}}\)</span>:</p>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
-\[\Phi\bigl(Q_{\mathrm{port}}\bigr) + Q_{\mathrm{flow}}
-\;=\; C \,\frac{dT_{\mathrm{server}}}{dt}\]</div>
+\[Q_{\mathrm{tower}} = UA \,\Delta T_{\mathrm{lm}}\]</div>
 </div>
-<p>Here <span class="math notranslate nohighlight">\(\Phi\)</span> is a polynomial fit (typically quadratic term 0.015, linear 1) to expose nonlinearity for RL vs. heuristic controllers.
-Server-load trace example: <code class="docutils literal notranslate"><span class="pre">input_04-07-24.csv</span></code>.</p>
+<p>with</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\Delta T_{\mathrm{lm}}
+= \frac{
+    (T_{w,\mathrm{out}} - T_{a,\mathrm{in}})
+    \;-\;
+    (T_{w,\mathrm{in}}  - T_{a,\mathrm{out}})
+  }{
+    \ln\!\displaystyle\frac{T_{w,\mathrm{out}} - T_{a,\mathrm{in}}}
+                           {T_{w,\mathrm{in}}  - T_{a,\mathrm{out}}}
+  }\]</div>
+</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(T_{a,\mathrm{in}}\)</span> and <span class="math notranslate nohighlight">\(T_{a,\mathrm{out}}\)</span> are the inlet and outlet air wet-bulb temperatures</p></li>
+</ul>
+</section>
+<section id="evaporative-mass-loss">
+<h2>Evaporative mass loss<a class="headerlink" href="#evaporative-mass-loss" title="Link to this heading">¶</a></h2>
+<p>The evaporated water mass flow is tied to the latent heat of vaporization:</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\dot{m}_{\mathrm{evap}}
+= \frac{Q_{\mathrm{tower}}}{h_{fg}}\]</div>
+</div>
+<p>where <span class="math notranslate nohighlight">\(h_{fg}\)</span> is the latent heat of vaporization of water.</p>
+</section>
+<section id="fan-power-consumption">
+<h2>Fan power consumption<a class="headerlink" href="#fan-power-consumption" title="Link to this heading">¶</a></h2>
+<p>Air is drawn through the tower by a fan against a pressure rise <span class="math notranslate nohighlight">\(\Delta p_a\)</span>. The electrical power required is:</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[P_{\mathrm{fan}}
+= \frac{\Delta p_a \,\dot V_a}{\eta_{\mathrm{fan}}}\]</div>
+</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\dot V_a\)</span> is the volumetric air flow rate</p></li>
+<li><p><span class="math notranslate nohighlight">\(\eta_{\mathrm{fan}}\)</span> is the fan efficiency</p></li>
+</ul>
+</section>
+<section id="usage-in-sustain-lc">
+<h2>Usage in Sustain-LC<a class="headerlink" href="#usage-in-sustain-lc" title="Link to this heading">¶</a></h2>
+<p>The above equations are implemented in the cooling-tower submodel of the Sustain-LC Gymnasium environment. Users can adjust parameters such as <span class="math notranslate nohighlight">\(UA\)</span>, <span class="math notranslate nohighlight">\(\dot{m}_w\)</span>, and fan characteristics to study the impacts on thermal regulation and energy consumption.</p>
 </section>
 </section>
 
@@ -288,23 +339,23 @@ Server-load trace example: <code class="docutils literal notranslate"><span clas
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="../environment.html">
+          <a class="next-page" href="blade_group_modeling.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Environment Implementation</div>
+                <div class="title">Blade Group and CDU Modeling</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="advanced_autocsm_usage.html">
+          <a class="prev-page" href="index.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Advanced AutoCSM Usage for Model Building</div>
+                <div class="title">Modeling</div>
                 
               </div>
             </a>
@@ -338,10 +389,13 @@ Server-load trace example: <code class="docutils literal notranslate"><span clas
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Blade Group and CDU Modeling</a><ul>
-<li><a class="reference internal" href="#heat-capacitor">Heat capacitor</a></li>
-<li><a class="reference internal" href="#conduction-model">Conduction model</a></li>
-<li><a class="reference internal" href="#overall-balance">Overall balance</a></li>
+<li><a class="reference internal" href="#">Cooling Tower Modeling</a><ul>
+<li><a class="reference internal" href="#mass-continuity">Mass continuity</a></li>
+<li><a class="reference internal" href="#energy-balance">Energy balance</a></li>
+<li><a class="reference internal" href="#overall-heattransfer-model">Overall heat‐transfer model</a></li>
+<li><a class="reference internal" href="#evaporative-mass-loss">Evaporative mass loss</a></li>
+<li><a class="reference internal" href="#fan-power-consumption">Fan power consumption</a></li>
+<li><a class="reference internal" href="#usage-in-sustain-lc">Usage in Sustain-LC</a></li>
 </ul>
 </li>
 </ul>

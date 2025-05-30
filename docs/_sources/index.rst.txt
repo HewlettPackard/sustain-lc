@@ -50,4 +50,5 @@ Both problems share the same FMU transition function (𝒯), enabling mutual inf
    installation
    quickstart
    tutorials/index
+   modeling/index
    environment
