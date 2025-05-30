@@ -40,4 +40,3 @@ Quickstart Guide for Sustain-LC
 3. **Next Steps & Further Reading**
 
    - Advanced modeling with AutoCSM: see :doc:`Advanced AutoCSM Usage <tutorials/advanced_autocsm_usage>`
-   - Blade-group and CDU thermodynamics: see :doc:`Blade Group Modeling <tutorials/blade_group_modeling>`
