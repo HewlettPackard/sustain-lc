@@ -219,7 +219,7 @@ Users need to clone the following repositories to their working folder that can 
     The TRANSFORM (TRANsient Simulation Framework Of Reconfigurable Models) Library is an open-source Modelica toolkit developed by Oak Ridge National Laboratory for modeling complex thermal-hydraulic systems. It specializes in advanced energy systems with particular strength in liquid-cooled applications, including advanced reactor designs and heat transfer loops. The library provides detailed component models for heat exchangers, pumps, compressors, and specialized fluid systems with comprehensive thermophysical property implementations. TRANSFORM excels at simulating transient behaviors in cooling systems, making it valuable for studying system responses during operational changes or upset conditions. The modular architecture enables scaling from component-level to system-level simulations with various working fluids, including specialized coolants used in high-performance liquid cooling applications.
 
     <div style="text-align: center;">
-    <img src="assets/trasnform_image.png" alt="Logo" width="400"/>
+    <img src="assets/trasnform_image.png" alt="trasnform_image" width="400"/>
     </div>
 
 3.  **datacenterCoolingModel:** `git clone https://code.ornl.gov/exadigit/datacenterCoolingModel.git`
@@ -227,7 +227,7 @@ Users need to clone the following repositories to their working folder that can 
     The Data Center Cooling Model is an ORNL-developed specialized simulation framework targeting liquid cooling systems specifically for high-performance computing facilities. The repository provides detailed modeling capabilities for direct-to-chip, immersion, and rear-door heat exchanger liquid cooling technologies increasingly adopted in modern data centers. Its component models account for the complex interactions between IT equipment heat generation, coolant flow distribution, and thermal management systems at rack, row, and facility scales. The framework enables performance assessment, optimization, and efficiency analysis of cooling systems under various operating conditions and workloads. The models support integration with power consumption data to enable comprehensive energy efficiency calculations and cooling infrastructure planning for data centers.
 
     <div style="text-align: center;">
-    <img src="assets/exadigit-logo.png" alt="Logo" width="400"/>
+    <img src="assets/exadigit-logo.png" alt="exadigit" width="400"/>
     </div>
 
 4.  **AutoCSM:** `git clone https://code.ornl.gov/exadigit/AutoCSM.git`
@@ -249,7 +249,7 @@ from the CLI in which the JSON file and the Python files are located in the Auto
 The above process generates the FMU which is then wrapped inside a Gymnasium Environment for Sustain-LC. Most of the common application requirements are already covered by the default Sustain-LC environment file `frontier_env.py`. If the user wishes to specify highly custom variables for logging, they have to specify those variables in the info dictionary for the environment.
 
 <div style="text-align: center;">
-    <img src="assets/autocsm_exadigit.png" alt="Logo" width="400"/>
+    <img src="assets/autocsm_exadigit.png" alt="autocsm" width="400"/>
     </div>
 
 Of these libraries, the user needs to access the **datacenterCoolingModel** to study the atomic structures of the thermodynamic components that can be used to build custom data center configurations. An example configuration is provided in Example JSON. This JSON describes an example hierarchical structure for the models. Further example hierarchical structures used for the results in the main paper are also included in the sustain-lc repository.
