@@ -7,8 +7,7 @@
     <img src="assets/sustain_lc_logo.png" alt="Logo" width="200"/>
 </p>
 
-| ![Image 1](assets/exadigit-logo.png) | ![Image 2](assets/sustain_lc_logo.png) |
-|:-------------------------------------:|:--------------------------------------:|
+![Image 1](assets/exadigit-logo.png) ![Image 2](assets/sustain_lc_logo.png)
 
 For more information, please visit the [documentation webpage](https://hewlettpackard.github.io/sustain-lc/).
 
