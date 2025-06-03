@@ -1,4 +1,9 @@
 <div style="text-align: center;">
+    <img src="assets/exadigit-logo.png" alt="Example Image" width="600"/>
+    <p>Sustain-LC is part of the High Performance Supercomputing Digital Twin led by Oak Ridge National Labs with HPE and other industry and academic partners</p>
+</div>
+
+<div style="text-align: center;">
     <img src="assets/sustain_lc_logo.png" alt="Logo" width="200"/>
 </div>
 
