@@ -259,9 +259,11 @@ The above process generates the FMU which is then wrapped inside a Gymnasium Env
 
 Of these libraries, the user needs to access the **datacenterCoolingModel** to study the atomic structures of the thermodynamic components that can be used to build custom data center configurations. An example configuration is provided in Example JSON. This JSON describes an example hierarchical structure for the models. Further example hierarchical structures used for the results in the main paper are also included in the sustain-lc repository.
 
-## CDU Cotrol Loop
+## High Fidelity of CDU Model from ORNL developed in Sustain-LC
 
 <p align="center">
-    <img src="assets/cdu_models.PNG" alt="Logo" width="500"/>
-    <p>Example of the detailed CDU models for Sustain-LC</p>
+    <img src="assets/CDU_loop_fidelity.PNG" alt="Logo" width="500"/>
+    <p>High Fidelity of underlying models for Sustain-LC CDU Loops</p>
 </p>
+
+The Modelica models developed from the ORNL libraries show high fidelity when compared to ground truth data for Cooling Distribution Units data.
