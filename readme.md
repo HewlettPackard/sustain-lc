@@ -258,3 +258,10 @@ The above process generates the FMU which is then wrapped inside a Gymnasium Env
     </div>
 
 Of these libraries, the user needs to access the **datacenterCoolingModel** to study the atomic structures of the thermodynamic components that can be used to build custom data center configurations. An example configuration is provided in Example JSON. This JSON describes an example hierarchical structure for the models. Further example hierarchical structures used for the results in the main paper are also included in the sustain-lc repository.
+
+## CDU Cotrol Loop
+
+<p align="center">
+    <img src="assets/cdu_models.PNG" alt="Logo" width="500"/>
+    <p>Example of the detailed CDU models for Sustain-LC</p>
+</p>
