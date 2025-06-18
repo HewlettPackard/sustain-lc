@@ -10,7 +10,7 @@
 For more information, please visit the [documentation webpage](https://hewlettpackard.github.io/sustain-lc/).
 
 <p align="center">
-    <img src="assets/sustain-lc.gif" alt="Example GIF" width="600"/>
+    <img src="assets/sustain-lc.gif" alt="Example GIF" width="800" height="250"/>
 </p>
 
 # SustainLC: Benchmark for End-to-End Control of Liquid Cooling in Sustainable Data Centers
