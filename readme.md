@@ -9,6 +9,9 @@
 
 For more information, please visit the [documentation webpage](https://hewlettpackard.github.io/sustain-lc/).
 
+<p align="center">
+    <img src="assets/sustain-lc.gif" alt="Example GIF" width="600"/>
+</p>
 # SustainLC: Benchmark for End-to-End Control of Liquid Cooling in Sustainable Data Centers
 
 ## Quickstart evaluation on collab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/HewlettPackard/sustain-lc/blob/main/evaluate_mh_ma_ca_ppo.ipynb)
@@ -267,3 +270,4 @@ Of these libraries, the user needs to access the **datacenterCoolingModel** to s
 </p>
 
 The Modelica models developed from the ORNL libraries show high fidelity when compared to ground truth data for Cooling Distribution Units data.
+
