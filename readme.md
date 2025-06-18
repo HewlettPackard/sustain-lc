@@ -12,6 +12,7 @@ For more information, please visit the [documentation webpage](https://hewlettpa
 <p align="center">
     <img src="assets/sustain-lc.gif" alt="Example GIF" width="600"/>
 </p>
+
 # SustainLC: Benchmark for End-to-End Control of Liquid Cooling in Sustainable Data Centers
 
 ## Quickstart evaluation on collab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/HewlettPackard/sustain-lc/blob/main/evaluate_mh_ma_ca_ppo.ipynb)
