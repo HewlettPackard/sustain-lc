@@ -1,0 +1,55 @@
+LLM Agentic Playground
+======================
+
+This page introduces the LLM Agentic Playground, a modular environment to test and evaluate multi-agent setups for control of liquid cooling systems.
+
+Configurable Reasoning for Trade-Off Testing
+--------------------------------------------
+
+Users can configure different reasoning parameters to explore the trade-offs between decision quality, latency, and memory usage.
+
+- **LLM Models:** Llama 8B, Qwen 8B
+- **Context Window Sizes:** 8K to 128K
+- **Reasoning Modes:** Chain of Thought, Few-Shot, Extended Thinking
+
+Drag-and-Drop Agent Design for Scalable Control
+-----------------------------------------------
+
+A visual agent builder enables users to define scalable multi-agent architectures. These can be used for both **coarse-** and **fine-grained** control strategies in digital twins for liquid cooling.
+
+Stress Injection for Reasoning Evaluation
+-----------------------------------------
+
+System stress can be simulated through fault injection, allowing users to evaluate how various agent setups and reasoning styles impact:
+
+- System resilience
+- Fault recovery time
+- Control robustness
+
+Real-Time Monitoring
+--------------------
+
+Dashboards provide visibility into:
+
+- Agent and message flow
+- Event alerts
+- Key performance indicators (KPIs) related to liquid cooling
+- Control latency and dynamics
+
+Explainability Tools
+--------------------
+
+The system includes natural language explanation tools that provide:
+
+- Short-form rationales
+- Detailed reasoning traces
+
+These help users understand decision-making processes and compare performance across configurations.
+
+Safety and Guardrails
+---------------------
+
+Built-in safety constraints ensure that all tests remain within operational boundaries. This allows users to:
+
+- Explore aggressive optimization strategies
+- Avoid causing system damage

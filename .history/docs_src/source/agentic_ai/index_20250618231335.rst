@@ -1,0 +1,10 @@
+Agentic AI
+==========
+
+This section covers agentic AI in Sustain-Cluster.
+
+.. toctree::
+   :maxdepth: 2
+
+   agentic2
+   agentic3

@@ -51,4 +51,5 @@ Both problems share the same FMU transition function (𝒯), enabling mutual inf
    quickstart
    tutorials/index
    modeling/index
+   agentic_ai/index
    environment

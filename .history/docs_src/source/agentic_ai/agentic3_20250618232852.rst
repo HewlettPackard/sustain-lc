@@ -1,0 +1,73 @@
+LLM Agentic Explainable Control
+===============================
+
+This section compares and explains the reasoning and control behavior of two LLMs—Llama 3.1 and Qwen 3-8B—in a liquid cooling control scenario.
+
+Executive Summary Comparison
+----------------------------
+
+- **Llama 3.1:**  
+  The cooling system is currently maintaining a stable operating temperature across all five CDUs. Active cooling is provided by tower units, while cabinet valves regulate temperature precisely.
+
+- **Qwen 3-8B:**  
+  The system shows stable temperature deviations with minimal fluctuations. However, the cooling tower is operating at very low capacity (`action 0`), which may be causing reduced cooling efficiency. Cabinet 5 has a significant temperature deviation of **-13.62K**.
+
+Cooling Assessment
+------------------
+
+- **Llama 3.1:**  
+  The control goal is to **maintain current temperature levels** without further action.
+
+- **Qwen 3-8B:**  
+  Extremely low tower cooling action may **reduce overall system cooling capacity**, possibly affecting effectiveness in high-load scenarios.
+
+Short-Term Recommendation
+--------------------------
+
+- **Llama 3.1:**  
+  Monitor temperature and workload distributions. Adjust valve positions if necessary.
+
+- **Qwen 3-8B:**  
+  Increase tower operation to a **moderate level** to improve heat rejection and **reduce overcooling** risks.
+
+Qwen 3-8B: Short Explanation
+----------------------------
+
+**Explanation:**  
+The system adjusted valve positions across all cabinets to balance cooling performance and energy efficiency. Tower cooling was set low due to stable temperature trends.
+
+- **Temperature impact:**
+  - All temperatures are within normal range with minor deviations.
+  - Very low tower cooling may limit fine control.
+
+- **Energy efficiency:**
+  - Low tower usage contributes to **moderate energy savings**.
+
+- **Inference time:** 1.11 seconds
+
+Qwen 3-8B: Detailed Explanation
+-------------------------------
+
+**Executive Summary:**  
+Qwen 3-8B keeps system temperatures stable and emphasizes energy efficiency.
+
+- **Temperature stability:**
+  - Most cabinets operate within expected norms.
+  - **Cabinet 5 shows abnormal deviation** (-13.62K), possibly due to overcooling.
+
+- **Valve actions:**
+  - Even valve distribution across cabinets and blade groups.
+  - Cooling tower set to low (`action 0`), improving efficiency but reducing capacity.
+
+- **Cabinet temperature:**
+  - Cabinet 5's deviation may indicate inefficiency or control imbalance.
+
+- **Energy efficiency:**
+  - Considered **moderate**.
+  - Low tower usage reduces energy cost, but system responsiveness may suffer.
+
+- **Action rationale:**
+  - Control decisions were based on observed temperature ranges.
+  - While performance is good, overcooling risk should be monitored.
+
+- **Inference time:** 4.91 seconds
