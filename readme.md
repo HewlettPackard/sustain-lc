@@ -1,10 +1,15 @@
 <p align="center">
-    <img src="assets/exadigit-logo.png" alt="Example Image" width="600"/>
+    <table>
+        <tr>
+            <td>
+                <img src="assets/exadigit-logo.png" alt="Example Image" width="450" height="70"/>
+            </td>
+            <td>
+                <img src="assets/sustain_lc_logo.png" alt="Logo" width="200"/>
+            </td>
+        </tr>
+    </table>
     <p>Sustain-LC is part of the High Performance Supercomputing Digital Twin led by Oak Ridge National Labs with HPE and other industry and academic partners</p>
-</p>
-
-<p align="center">
-    <img src="assets/sustain_lc_logo.png" alt="Logo" width="200"/>
 </p>
 
 For more information, please visit the [documentation webpage](https://hewlettpackard.github.io/sustain-lc/).
