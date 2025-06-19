@@ -277,3 +277,94 @@ Of these libraries, the user needs to access the **datacenterCoolingModel** to s
 
 The Modelica models developed from the ORNL libraries show high fidelity when compared to ground truth data for Cooling Distribution Units data.
 
+
+
+## Agentic LLM-Based Digital Twin for Liquid Cooling
+
+This system uses LLM-based agents for explainable control in liquid-cooled data centers. The architecture is modular and includes:
+
+- **LLM-supported agents (purple)**  
+- **Non-LLM agents (blue)**  
+- **Tools (green)**  
+
+All are connected via a **central Message Bus**.
+
+
+<p align="center">
+    <img src="docs_src/source/images/llm_agentic_info.png" alt="Logo" width="1200"/>
+</p>
+
+### Components Summary
+
+- **Orchestration**: Manages agent lifecycle and system communication  
+- **Agent Monitor**: Tracks agent performance and suggests improvements  
+- **Maintenance**: Detects failures and trends; prescriptive actions  
+- **Math Toolbox**: Provides modeling and computation tools  
+- **Configuration**: System-level parameter and logic management  
+- **Visualization**: Real-time dashboards, anomaly/trend view  
+- **Control**: RL/LLM hybrid for issuing real-time control actions  
+- **Sensor**: Interfaces with physical/digital twin; handles raw data  
+- **LLM Control Agents**: Adjust flow rates, valves; explain adaptive behaviors  
+- **Liquid Cooling System**: CDU-level and cabinet-level monitoring and control
+
+
+## LLM Agentic Playground
+
+<p align="center">
+    <img src="docs_src/source/images/choice.PNG" alt="Logo" width="1200"/>
+</p>
+
+### Experimentation Capabilities
+
+- **Reasoning Configurations**
+  - LLMs: LLaMA 8B, Qwen 8B
+  - Context sizes: 8K–128K
+  - Modes: Chain-of-Thought, Few-Shot, Extended Thinking
+
+- **Drag-and-Drop Agent Design**
+  - Build visual multi-agent systems
+  - Test both coarse/fine-grained strategies
+
+- **Stress Injection**
+  - Simulate abnormal conditions for resilience testing
+
+- **Real-Time Monitoring**
+  - Track latency, event flow, system response
+
+- **Explainability**
+  - Short and detailed natural-language reasoning explanations
+
+- **Safety Controls**
+  - Guardrails and boundaries for risk-free testing
+
+## Explainable Control Comparison: LLaMA vs Qwen
+
+<p align="center">
+    <img src="docs_src/source/images/explainable.PNG" alt="Logo" width="1200"/>
+</p>
+
+### Executive Summary
+
+- **LLaMA 3.1**: Stable operation across CDUs and cabinets
+- **Qwen 3-8B**: Low cooling tower usage; possible overcooling in Cabinet 5
+
+### Assessment
+
+- **LLaMA 3.1**: Maintain stable temps
+- **Qwen 3-8B**: Increase tower cooling to improve heat rejection
+
+### Short-Term Recommendations
+
+- **LLaMA 3.1**: Monitor temperatures and adjust valves
+- **Qwen 3-8B**: Raise cooling tower level to reduce risk of inefficiency
+
+### Qwen 3-8B Inference (1.11s Summary)
+
+- Valve rebalancing for energy efficiency
+- Caution: Low tower activity could reduce control ability
+
+### Qwen 3-8B Detailed Analysis (4.91s)
+
+- Cabinet 5 overcooled (-13.62K deviation)
+- Good energy use but potential imbalance
+- Valve and tower actions aligned with observed temperature range
