@@ -22,6 +22,11 @@ Drag-and-Drop Agent Design for Scalable Control
 
 A visual agent builder enables users to define scalable multi-agent architectures. These can be used for both **coarse-** and **fine-grained** control strategies in digital twins for liquid cooling.
 
+.. image:: ../images/agentic-builder.PNG
+   :scale: 40%
+   :alt: Agentic LLM System Overview
+   :align: center
+
 Stress Injection for Reasoning Evaluation
 -----------------------------------------
 
