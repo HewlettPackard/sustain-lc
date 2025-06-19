@@ -308,7 +308,7 @@ All are connected via a **central Message Bus**.
 - **Liquid Cooling System**: CDU-level and cabinet-level monitoring and control
 
 
-## LLM Agentic Playground
+## LLM Agentic Flexibility
 
 <p align="center">
     <img src="docs_src/source/images/choice.PNG" alt="Logo" width="1200"/>
