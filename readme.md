@@ -324,6 +324,9 @@ All are connected via a **central Message Bus**.
 - **Drag-and-Drop Agent Design**
   - Build visual multi-agent systems
   - Test both coarse/fine-grained strategies
+<p align="center">
+    <img src="docs_src/source/images/agentic-builder.PNG" alt="Logo" width="1200"/>
+</p>
 
 - **Stress Injection**
   - Simulate abnormal conditions for resilience testing
