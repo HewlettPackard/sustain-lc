@@ -29,11 +29,14 @@ Main Components
 - **LLM Control Agents:** Issue adaptive actions for cooling elements based on historical and real-time data.
 - **Liquid Cooling System:** Uses a CDU and cabinet valves for precise thermal control, based on sensor feedback (T_in, T_out).
 
-Use this architecture to combine physical system modeling, real-time control, and explainable AI for advanced cooling management.
-
+Validating Explainability
+-------------------------
+A critical component of this framework is ensuring that the LLM-generated explanations are not only coherent but also accurate and useful for human operators. To demonstrate this, we provide a series of concrete examples where RL agent actions are interpreted by an LLM. Each example is accompanied by a qualitative assessment from a data-center facilities expert, validating the LLM's reasoning and guidance.
 
 .. toctree::
    :maxdepth: 2
+   :caption: Agentic AI Topics
 
-   agentic2
-   agentic3
+   LLM Agentic Playground <agentic2>
+   LLM Control Comparison <agentic3>
+   LLM Explanation and Guidance Evaluation <llm_evaluation>

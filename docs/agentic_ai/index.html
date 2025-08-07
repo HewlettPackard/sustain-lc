@@ -213,7 +213,8 @@
 </li>
 <li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">Agentic LLM-Based Digital Twin for Liquid Cooling</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Agentic LLM-Based Digital Twin for Liquid Cooling</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="agentic2.html">LLM Agentic Playground</a></li>
-<li class="toctree-l2"><a class="reference internal" href="agentic3.html">LLM Agentic Explainable Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agentic3.html">LLM Control Comparison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="llm_evaluation.html">LLM Explanation and Guidance Evaluation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../environment.html">Environment Implementation</a></li>
@@ -284,8 +285,12 @@
 <li><p><strong>LLM Control Agents:</strong> Issue adaptive actions for cooling elements based on historical and real-time data.</p></li>
 <li><p><strong>Liquid Cooling System:</strong> Uses a CDU and cabinet valves for precise thermal control, based on sensor feedback (T_in, T_out).</p></li>
 </ul>
-<p>Use this architecture to combine physical system modeling, real-time control, and explainable AI for advanced cooling management.</p>
+</section>
+<section id="validating-explainability">
+<h2>Validating Explainability<a class="headerlink" href="#validating-explainability" title="Link to this heading">¶</a></h2>
+<p>A critical component of this framework is ensuring that the LLM-generated explanations are not only coherent but also accurate and useful for human operators. To demonstrate this, we provide a series of concrete examples where RL agent actions are interpreted by an LLM. Each example is accompanied by a qualitative assessment from a data-center facilities expert, validating the LLM’s reasoning and guidance.</p>
 <div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Agentic AI Topics</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="agentic2.html">LLM Agentic Playground</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="agentic2.html#configurable-reasoning-for-trade-off-testing">Configurable Reasoning for Trade-Off Testing</a></li>
@@ -296,7 +301,7 @@
 <li class="toctree-l2"><a class="reference internal" href="agentic2.html#safety-and-guardrails">Safety and Guardrails</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="agentic3.html">LLM Agentic Explainable Control</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="agentic3.html">LLM Control Comparison</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="agentic3.html#executive-summary-comparison">Executive Summary Comparison</a></li>
 <li class="toctree-l2"><a class="reference internal" href="agentic3.html#cooling-assessment">Cooling Assessment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="agentic3.html#short-term-recommendation">Short-Term Recommendation</a></li>
@@ -304,6 +309,7 @@
 <li class="toctree-l2"><a class="reference internal" href="agentic3.html#qwen-3-8b-detailed-explanation">Qwen 3-8B: Detailed Explanation</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="llm_evaluation.html">LLM Explanation and Guidance Evaluation</a></li>
 </ul>
 </div>
 </section>
@@ -367,6 +373,7 @@
 <li><a class="reference internal" href="#">Agentic LLM-Based Digital Twin for Liquid Cooling</a><ul>
 <li><a class="reference internal" href="#agent-types">Agent Types</a></li>
 <li><a class="reference internal" href="#main-components">Main Components</a></li>
+<li><a class="reference internal" href="#validating-explainability">Validating Explainability</a></li>
 </ul>
 </li>
 </ul>
