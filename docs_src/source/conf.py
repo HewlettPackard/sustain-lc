@@ -34,8 +34,8 @@ exclude_patterns = []
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = 'furo'
-master_doc = 'index' 
-html_static_path = ['_static']
+root_doc  = 'index' 
+# html_static_path = ['_static']
 
 # -- Global substitutions ------------------------------------------------
 rst_epilog = """

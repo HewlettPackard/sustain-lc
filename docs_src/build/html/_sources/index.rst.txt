@@ -44,6 +44,7 @@ Sustain-LC defines two RL problems on the same FMU transition model:
 Both problems share the same FMU transition function (𝒯), enabling mutual influence. However, due to weak thermal coupling and the large scale (∼10⁴ blade groups), centralized training with decentralized execution proved ineffective. Instead, agents operate independently with centralized inference during rollout.
 
 .. toctree::
+   :hidden:
    :maxdepth: 2
    :caption: Contents:
 

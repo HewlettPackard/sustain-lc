@@ -34,7 +34,7 @@ Validating Explainability
 A critical component of this framework is ensuring that the LLM-generated explanations are not only coherent but also accurate and useful for human operators. To demonstrate this, we provide a series of concrete examples where RL agent actions are interpreted by an LLM. Each example is accompanied by a qualitative assessment from a data-center facilities expert, validating the LLM's reasoning and guidance.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Agentic AI Topics
 
    LLM Agentic Playground <agentic2>
